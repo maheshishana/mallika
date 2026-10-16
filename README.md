@@ -1,29 +1,28 @@
-# Mahesh Ishana — personal creator website
+# Mahesh Ishana — Static Website
 
-A responsive, static personal-brand website for GitHub Pages. No backend, database, third-party form service, build step, or secret keys are required.
+A responsive multi-page portfolio and blog for GitHub Pages.
 
-## Files
-- `index.html` — page structure, SEO metadata, and content
-- `styles.css` — responsive layout, typography, visual design, and reduced-motion support
-- `script.js` — mobile navigation, current year, and lightweight scroll reveals
-- `favicon.svg` — simple monogram icon
-- `CNAME` — custom domain `maheshishana.in`
+## Included
+- Homepage, About, Contact
+- Privacy Policy, Disclaimer, Terms of Use
+- Blog index and 8 individual articles
+- Responsive mobile navigation
+- SEO titles/descriptions, canonical URLs, sitemap.xml, robots.txt
+- Contact form that prepares an email in the visitor's default email app; it does not transmit data to a server
 
-## Publish with GitHub Pages
-1. Create a new GitHub repository. For a personal site, a repository named `<your-github-username>.github.io` is simplest. A normal repository can also be published through Pages.
-2. Upload all files from this folder to the repository root and commit them.
-3. Open **Settings → Pages** and choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
-4. In **Settings → Pages → Custom domain**, enter `maheshishana.in` and save. Verify ownership of the domain in GitHub if possible.
-5. At your domain registrar's DNS panel, configure the apex domain using GitHub Pages' current official A/AAAA records, and add `www` as a CNAME pointing directly to `<your-github-username>.github.io`. Do not replace existing DNS records until you know what they are used for.
-6. Wait for DNS and certificate provisioning, then enable **Enforce HTTPS** in Settings → Pages when available.
-
-Official instructions: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
+## Publish on GitHub Pages
+1. Make a backup of the existing repository.
+2. Extract this ZIP.
+3. Upload all extracted files and folders to the repository root (keep `blog/` and `assets/` folders).
+4. Commit changes and wait for GitHub Pages deployment.
+5. In repository Settings → Pages, confirm the custom domain is `maheshishana.in` and enable Enforce HTTPS when available.
 
 ## Before publishing
-- Confirm that `https://maheshishana.in/` is the intended canonical domain and that you control its DNS.
-- Confirm the Instagram profile URL in `index.html` and the project descriptions.
-- Replace the YouTube search links with the exact channel/video URLs when ready.
-- The `The Loan Trap` project text is written as a portfolio summary; update the description and status to match the published video precisely.
+- Check the brand name and all social links.
+- The YouTube link is a search link, not a verified channel link; replace it with the exact channel URL when ready.
+- Add a public contact email if desired. The current contact form opens an email app without pre-filling a recipient.
+- Review legal pages for your actual analytics, advertising, hosting and business setup. These pages are general templates, not legal advice.
+- Update the privacy policy if adding Google Analytics, AdSense, embedded videos, cookies, or third-party forms.
+- Verify article claims and add citations/sources before publishing if making specific factual or statistical claims.
 
-## Security notes
-This is a static website, so it does not store visitor data or credentials and has no server-side login or database. GitHub Pages supports HTTPS; use the official custom-domain setup and enable HTTPS. Do not add API keys, private contact information, or secrets to a public repository. GitHub Pages does not let you set arbitrary server response headers, so this starter does not claim to configure server-level security headers.
+The site is intentionally lightweight and does not bundle large image files. It uses CSS-generated artwork and an optional Google Fonts import.

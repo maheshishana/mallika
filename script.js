@@ -1,34 +1,35 @@
 (() => {
-  const menuButton = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  if (menuButton && navLinks) {
-    menuButton.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('is-open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-      menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav-links');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      toggle.textContent = open ? '×' : '☰';
     });
-    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-      navLinks.classList.remove('is-open');
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.setAttribute('aria-label', 'Open menu');
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      toggle.textContent = '☰';
     }));
   }
-
-  const year = document.getElementById('year');
-  if (year) year.textContent = String(new Date().getFullYear());
-
-  const revealItems = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealItems.forEach((item) => observer.observe(item));
-  } else {
-    revealItems.forEach((item) => item.classList.add('is-visible'));
+  document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+  const form = document.querySelector('[data-contact-form]');
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const subject = String(data.get('subject') || 'Website enquiry').trim();
+      const message = String(data.get('message') || '').trim();
+      const body = `Name: ${name}\nReply email: ${email}\n\n${message}`;
+      const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const status = form.querySelector('[data-form-status]');
+      if (status) status.textContent = 'Your email app will open. Add your preferred contact email in the To field before sending.';
+      window.location.href = mailto;
+    });
   }
 })();
